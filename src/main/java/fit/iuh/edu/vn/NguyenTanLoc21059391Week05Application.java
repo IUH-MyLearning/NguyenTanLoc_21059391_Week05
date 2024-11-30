@@ -1,4 +1,4 @@
-package fit.iuh.edu.vn.nguyentanloc_21059391_week05;
+package fit.iuh.edu.vn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
