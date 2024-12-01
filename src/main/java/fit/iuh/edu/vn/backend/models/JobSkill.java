@@ -1,6 +1,7 @@
 package fit.iuh.edu.vn.backend.models;
 
 import fit.iuh.edu.vn.backend.converters.SkillLevelConverter;
+import fit.iuh.edu.vn.backend.enums.SkillLevel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +29,6 @@ public class JobSkill {
 
     @Convert(converter = SkillLevelConverter.class)
     @Column(name = "skill_level", nullable = false)
-    private Byte skillLevel;
+    private SkillLevel skillLevel;
 
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Đăng Tin Tuyển Dụng</h1>
+    <form action="/submit-job" method="POST">
+        <h2>Thông tin công ty</h2>
+        <label for="comp_name">Tên công ty</label>
+        <input type="text" id="comp_name" name="comp_name" required>
+
+        <label for="email">Email liên hệ</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Số điện thoại</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="address">Địa chỉ</label>
+        <input type="text" id="address" name="address">
+
+        <h2>Thông tin công việc</h2>
+        <label for="job_name">Tên công việc</label>
+        <input type="text" id="job_name" name="job_name" required>
+
+        <label for="job_desc">Mô tả công việc</label>
+        <textarea id="job_desc" name="job_desc" rows="5" required></textarea>
+
+        <label for="skills">Kỹ năng mong muốn</label>
+        <select id="skills" name="skills[]" multiple>
+            <option value="1">Kỹ năng 1</option>
+            <option value="2">Kỹ năng 2</option>
+            <option value="3">Kỹ năng 3</option>
+        </select>
+
+        <label for="skill_level">Mức độ yêu cầu</label>
+        <select id="skill_level" name="skill_level">
+            <option value="1">Cơ bản</option>
+            <option value="2">Trung bình</option>
+            <option value="3">Nâng cao</option>
+        </select>
+
+        <button type="submit">Đăng Tin</button>
+    </form>
+</body>
+</html>

@@ -2,8 +2,9 @@ package fit.iuh.edu.vn.backend.repositories;
 
 import fit.iuh.edu.vn.backend.models.Candidate;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CandidateRepository extends CrudRepository<Candidate, Long> {
-    Object findAll(Pageable pageable);
+public interface CandidateRepository extends JpaRepository<Candidate, Long> {
+
 }
