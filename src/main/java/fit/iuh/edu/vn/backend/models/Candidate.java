@@ -28,8 +28,12 @@ public class Candidate {
     @Column(name = "phone", nullable = false, length = 15)
     private String phone;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "account", nullable = false)
+    private Account account;
 
 }

@@ -8,10 +8,16 @@ import org.springframework.stereotype.Component;
 public class MainSeeder implements CommandLineRunner {
 
     @Autowired
-    private AccountSeeder accountSeeder;
+    private CandidateSeeder candidateSeeder;
+    @Autowired
+    private CompanySeeder companySeeder;
+    @Autowired
+    private SkillSeeder skillSeeder;
 
     @Override
     public void run(String... args) throws Exception {
-//        accountSeeder.run(args);
+        skillSeeder.run(args);
+        candidateSeeder.run(args);
+        companySeeder.run(args);
     }
 }

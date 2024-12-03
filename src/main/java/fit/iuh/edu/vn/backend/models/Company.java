@@ -10,6 +10,7 @@ import lombok.Setter;
 @Table(name = "company")
 public class Company {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comp_id", nullable = false)
     private Long id;
 
@@ -28,8 +29,12 @@ public class Company {
     @Column(name = "web_url")
     private String webUrl;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "account", nullable = false)
+    private Account account;
 
 }

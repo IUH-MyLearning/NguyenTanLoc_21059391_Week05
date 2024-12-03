@@ -1,6 +1,5 @@
 package fit.iuh.edu.vn.backend.models;
 
-import fit.iuh.edu.vn.backend.converters.RoleConverter;
 import fit.iuh.edu.vn.backend.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,19 +12,21 @@ import org.hibernate.annotations.ColumnDefault;
 @Table(name = "account")
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ColumnDefault("''")
-    @Column(name = "email", nullable = false)
-    private String email;
+    @ColumnDefault("'0'")
+    @Column(name = "username", nullable = false, length = 50)
+    private String username;
 
     @ColumnDefault("''")
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Convert(converter = RoleConverter.class)
+//    @Convert(converter = RoleConverter.class)
     @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
 }
