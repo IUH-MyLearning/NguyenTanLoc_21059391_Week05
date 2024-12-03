@@ -13,11 +13,14 @@ public class MainSeeder implements CommandLineRunner {
     private CompanySeeder companySeeder;
     @Autowired
     private SkillSeeder skillSeeder;
+    @Autowired
+    private JobSeeder jobSeeder;
 
     @Override
     public void run(String... args) throws Exception {
         skillSeeder.run(args);
         candidateSeeder.run(args);
         companySeeder.run(args);
+        jobSeeder.run(args);
     }
 }

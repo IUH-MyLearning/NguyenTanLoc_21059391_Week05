@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -35,5 +37,8 @@ public class Candidate {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account", nullable = false)
     private Account account;
+
+    @OneToMany(mappedBy = "can", fetch = FetchType.LAZY)
+    private List<Experience> experiences = new ArrayList<>();
 
 }
