@@ -5,10 +5,12 @@ import fit.iuh.edu.vn.backend.enums.SkillType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "skill")
 public class Skill {
     @Id

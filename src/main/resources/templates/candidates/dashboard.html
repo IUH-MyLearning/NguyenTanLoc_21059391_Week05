@@ -47,7 +47,8 @@
             margin-bottom: 15px;
         }
 
-        .job-skills {
+        .job-skills,
+        .missing-skills {
             font-size: 14px;
             color: #555;
             margin-bottom: 10px;
@@ -87,32 +88,40 @@
         <div>
             <strong>Skills:</strong>
             <span>
-                <span th:each="skill, iterStat : ${candidate.getCandidateSkills()}">
-                    <span th:text="${skill.getSkill().getSkillName()}"></span>
-                    <span th:if="${!iterStat.last}">, </span>
+                    <span th:each="skill, iterStat : ${candidate.getCandidateSkills()}">
+                        <span th:text="${skill.getSkill().getSkillName()}"></span>
+                        <span th:if="${!iterStat.last}">, </span>
+                    </span>
                 </span>
-            </span>
         </div>
     </div>
     <div class="container">
-        <div class="job-card" th:each="job : ${jobs}">
+        <div class="job-card" th:each="entry : ${missingSkillsMap}">
             <div class="company-name">
-                <span style="font-weight: bold; font-size: 18px" th:text="${job.getCompany().getCompName()}"></span>
+                <span th:text="${entry.key.company.compName}">Company Name</span>
             </div>
-            <div class="job-header" th:text="${job.jobName}"></div>
-            <div class="job-description" th:text="${job.jobDesc}"></div>
+            <div class="job-header" th:text="${entry.key.jobName}">Job Title</div>
+            <div class="job-description" th:text="${entry.key.jobDesc}">Job Description</div>
             <div class="job-skills">
-                <strong>Skills:</strong>
+                <strong>Required Skills:</strong>
+                <span th:if="${entry.key.jobSkills != null and entry.key.jobSkills.size() > 0}">
+                    <span th:each="jobSkill, iterStat : ${entry.key.jobSkills}">
+                        <span th:text="${jobSkill.skill.skillName}">Required Skill Name</span>
+                        <span th:if="${!iterStat.last}">, </span>
+                    </span>
+                </span>
+                <span th:if="${entry.key.jobSkills == null or entry.key.jobSkills.size() == 0}">No required skills available.</span>
+            </div>
+            <div class="missing-skills">
+                <strong>Skills you should be learning for this job:</strong>
                 <span>
-                    <span th:each="skill, iterStat : ${job.jobSkills}">
-                        <span th:text="${skill.skill.skillName}"></span>
+                    <span th:each="skill, iterStat : ${entry.value}">
+                        <span th:text="${skill.skillName}">Missing Skill Name</span>
                         <span th:if="${!iterStat.last}">, </span>
                     </span>
                 </span>
             </div>
-
         </div>
     </div>
-
 </body>
 </html>
