@@ -1,5 +1,6 @@
 package fit.iuh.edu.vn.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,10 +33,12 @@ public class Candidate {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
+    @JsonIgnore
     private Address address;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account", nullable = false)
+    @JsonIgnore
     private Account account;
 
     @OneToMany(mappedBy = "can", fetch = FetchType.LAZY)

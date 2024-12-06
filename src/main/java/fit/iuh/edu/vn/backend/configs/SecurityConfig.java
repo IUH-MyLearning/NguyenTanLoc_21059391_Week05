@@ -39,15 +39,14 @@ public class SecurityConfig  {
         http
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> auth
-                        // Phân quyền endpoint theo vai trò
                         .requestMatchers("/company/**").hasRole(COMPANY_ROLE)
                         .requestMatchers("/candidates/**").hasRole(CANDIDATE_ROLE)
+                        .requestMatchers("/candidates-page/**").hasRole(CANDIDATE_ROLE)
                         .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
                 ).formLogin( form -> form.loginPage("/login")
                         .defaultSuccessUrl("/login", true)
                         .permitAll()).
-                logout(LogoutConfigurer::permitAll).
                 httpBasic(Customizer.withDefaults());
         return http.build();
     }

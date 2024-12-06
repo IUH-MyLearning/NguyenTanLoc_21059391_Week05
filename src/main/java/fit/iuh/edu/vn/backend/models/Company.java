@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -36,5 +39,8 @@ public class Company {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account", nullable = false)
     private Account account;
+
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    private List<Job> jobs = new ArrayList<>();
 
 }

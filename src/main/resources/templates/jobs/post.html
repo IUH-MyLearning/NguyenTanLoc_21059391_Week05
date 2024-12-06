@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input, textarea, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align:center;">Recruitment</h1>
+<form action="/company/jobs/posting" method="post" th:object="${postJobDTO}">
+
+    <label for="job-name">Job Name:</label>
+    <input type="text" id="job-name" name="jobName" placeholder="Enter to job name" required th:field="${postJobDTO.jobName}">
+
+    <label for="job-description">Job Description:</label>
+    <textarea id="job-description" name="jobDescription" rows="5" placeholder="Nhập mô tả công việc" required th:field="${postJobDTO.jobDescription}"></textarea>
+    <label for="skills">Skills:</label>
+
+    <div id="skills" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+        <div th:each="skill : ${skills}"
+             style="flex: 1 1 calc(25% - 10px); box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #ddd; padding: 10px;">
+            <input type="checkbox" th:id="'skill-' + ${skill.id}" th:name="skills" th:value="${skill.id}">
+            <label th:for="'skill-' + ${skill.id}" th:text="${skill.skillName}"></label>
+        </div>
+    </div>
+
+    <button type="submit">Post</button>
+</form>
+</body>
+</html>

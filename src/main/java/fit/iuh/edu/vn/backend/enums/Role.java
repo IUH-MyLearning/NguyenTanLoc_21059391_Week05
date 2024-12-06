@@ -1,7 +1,7 @@
 package fit.iuh.edu.vn.backend.enums;
 
 public enum Role {
-    COMPANY, CANDIDATE;
+    ROLE_COMPANY, ROLE_CANDIDATE;
 //
 //    private int value;
 //

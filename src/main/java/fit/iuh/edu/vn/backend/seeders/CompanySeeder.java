@@ -55,7 +55,7 @@ public class CompanySeeder implements CommandLineRunner {
                 Account account = new Account();
                 account.setUsername(faker.internet().username());
                 account.setPassword(passwordEncoder.encode("123"));
-                account.setRole(Role.COMPANY);
+                account.setRole(Role.ROLE_COMPANY);
                 accountRepository.save(account);
                 company.setAccount(account);
 

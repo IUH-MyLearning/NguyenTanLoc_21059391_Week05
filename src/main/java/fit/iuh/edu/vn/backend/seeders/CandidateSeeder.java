@@ -8,7 +8,6 @@ import jakarta.persistence.EntityManager;
 import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -61,7 +60,7 @@ public class CandidateSeeder implements CommandLineRunner {
                 Account account = new Account();
                 account.setUsername(faker.internet().username());
                 account.setPassword(passwordEncoder.encode("123"));
-                account.setRole(Role.CANDIDATE);
+                account.setRole(Role.ROLE_CANDIDATE);
                 accountRepository.save(account);
                 candidate.setAccount(account);
                 candidateRepository.save(candidate);

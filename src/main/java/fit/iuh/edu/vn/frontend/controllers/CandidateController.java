@@ -49,4 +49,5 @@ public class CandidateController {
         }
         return "candidates/candidates-paging";
     }
+
 }

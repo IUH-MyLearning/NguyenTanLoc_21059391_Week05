@@ -14,14 +14,14 @@ public class AuthController {
     public String login(Principal principal) {
         if (principal != null) {
             String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0].toString();
+            System.out.println("Role: " + role);
             if (role.equals("CANDIDATE")) {
                 System.out.println("TRUE");
-                return "/candidates/candidates";
+                return "redirect:/candidates-page";
             }else{
-                System.out.println("FALSE");
+                return "redirect:/company/jobs/post";
             }
         }
-
         return "index";
     }
 }
