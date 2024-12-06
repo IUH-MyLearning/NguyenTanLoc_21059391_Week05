@@ -1,10 +1,13 @@
 package fit.iuh.edu.vn.frontend.controllers;
 
-import fit.iuh.edu.vn.backend.models.Candidate;
+import fit.iuh.edu.vn.backend.models.*;
 import fit.iuh.edu.vn.backend.repositories.CandidateRepository;
+import fit.iuh.edu.vn.backend.services.AuthServices;
 import fit.iuh.edu.vn.backend.services.CandidateServices;
+import fit.iuh.edu.vn.backend.services.JobServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,15 +22,24 @@ import java.util.stream.IntStream;
 public class CandidateController {
     @Autowired
     private CandidateServices candidateServices;
-
     @Autowired
     private CandidateRepository candidateRepository;
+    @Autowired
+    private AuthServices authServices;
+    @Autowired
+    private JobServices jobServices;
 
-    @GetMapping("/candidates")
-    public String showCandidateList(Model model){
-        model.addAttribute("candidates", candidateRepository.findAll());
-        return "candidates/candidates";
+    @GetMapping("/candidate/dashboard")
+    public String dashboard(Model model){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account account = authServices.findByUsername(username);
+        Candidate candidate = candidateRepository.findByAccount_Id(account.getId()).orElse(null);
+        List<Job> jobs = jobServices.findJobsByCandidateSkills(account.getId());
+        model.addAttribute("candidate", candidate);
+        model.addAttribute("jobs", jobs);
+        return "candidates/dashboard";
     }
+
     @GetMapping("/candidates-page")
     public String showCandidateListPaging(Model model,
                                           @RequestParam("page") Optional<Integer> page,
@@ -47,7 +59,7 @@ public class CandidateController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-        return "candidates/candidates-paging";
+        return "companies/candidates-paging";
     }
 
 }

@@ -44,4 +44,7 @@ public class Candidate {
     @OneToMany(mappedBy = "can", fetch = FetchType.LAZY)
     private List<Experience> experiences = new ArrayList<>();
 
+    @OneToMany(mappedBy = "can", fetch = FetchType.LAZY)
+    private List<CandidateSkill> candidateSkills = new ArrayList<>();
+
 }

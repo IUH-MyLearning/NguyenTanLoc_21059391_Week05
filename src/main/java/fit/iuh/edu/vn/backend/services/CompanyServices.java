@@ -9,6 +9,8 @@ import fit.iuh.edu.vn.backend.models.Skill;
 import fit.iuh.edu.vn.backend.repositories.CompanyRepository;
 import fit.iuh.edu.vn.backend.repositories.JobRepository;
 import fit.iuh.edu.vn.backend.repositories.JobSkillRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Service
 public class CompanyServices {
+
     @Autowired
     private CompanyRepository companyRepository;
     @Autowired

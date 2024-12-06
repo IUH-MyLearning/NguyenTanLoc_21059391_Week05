@@ -15,11 +15,11 @@ public class AuthController {
         if (principal != null) {
             String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0].toString();
             System.out.println("Role: " + role);
-            if (role.equals("CANDIDATE")) {
+            if (role.equals("ROLE_CANDIDATE")) {
                 System.out.println("TRUE");
-                return "redirect:/candidates-page";
+                return "redirect:/candidate/dashboard";
             }else{
-                return "redirect:/company/jobs/post";
+                return "redirect:/company/dashboard";
             }
         }
         return "index";

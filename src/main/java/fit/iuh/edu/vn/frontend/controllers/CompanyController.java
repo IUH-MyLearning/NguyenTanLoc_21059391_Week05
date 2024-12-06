@@ -2,10 +2,10 @@ package fit.iuh.edu.vn.frontend.controllers;
 
 import fit.iuh.edu.vn.backend.dtos.PostJobDTO;
 import fit.iuh.edu.vn.backend.models.Account;
-import fit.iuh.edu.vn.backend.models.Skill;
-import fit.iuh.edu.vn.backend.repositories.CompanyRepository;
-import fit.iuh.edu.vn.backend.repositories.SkillRepository;
+import fit.iuh.edu.vn.backend.models.Job;
+import fit.iuh.edu.vn.backend.repositories.*;
 import fit.iuh.edu.vn.backend.services.AuthServices;
+import fit.iuh.edu.vn.backend.services.CandidateServices;
 import fit.iuh.edu.vn.backend.services.CompanyServices;
 import fit.iuh.edu.vn.backend.services.JobServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -31,7 +30,25 @@ public class CompanyController {
     @Autowired
     private SkillRepository skillRepository;
     @Autowired
-    private CompanyRepository companyRepository;
+    private CandidateRepository candidateRepository;
+    @Autowired
+    private CandidateServices candidateServices;
+
+
+    @GetMapping("/company/dashboard")
+    public String dashboard(Model model){
+        return "companies/dashboard";
+    }
+
+
+    @GetMapping("/company/view-candidates")
+    public String showCandidateList(Model model){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account account = authServices.findByUsername(username);
+
+        model.addAttribute("candidates", candidateServices.findCandidatesBySkills(account.getId()));
+        return "companies/candidates";
+    }
 
     @GetMapping("/company/jobs/post")
     public String postJob(Model model){
@@ -56,6 +73,6 @@ public class CompanyController {
         }else{
             System.out.println("Post job failed");
         }
-        return "redirect:/login";
+        return "redirect:/dashboard";
     }
 }

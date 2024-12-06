@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates Potential</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .table th, .table td {
+            text-align: left;
+            padding: 12px 15px;
+        }
+
+        .table thead th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e9f5ff;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+        }
+
+        .table a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .table a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div th:switch="${candidates}">
+    <h2 th:case="null">No candidates yet!</h2>
+    <div th:case="*">
+        <h2>List Potential Candidates</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>dob</th>
+                <th>phone</th>
+                <th>email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="candidate : ${candidates}">
+                <td th:text="${candidate.id}"></td>
+                <td th:text="${candidate.fullName}"></td>
+                <td th:text="${candidate.dob}"></td>
+                <td th:text="${candidate.phone}"></td>
+                <td th:text="${candidate.email}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
