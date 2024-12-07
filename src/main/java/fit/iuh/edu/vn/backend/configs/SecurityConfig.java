@@ -40,7 +40,7 @@ public class SecurityConfig  {
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/company/**").hasRole(COMPANY_ROLE)
-                        .requestMatchers("/candidates/**").hasRole(CANDIDATE_ROLE)
+                        .requestMatchers("/candidate/**").hasRole(CANDIDATE_ROLE)
                         .requestMatchers("/candidates-page/**").hasRole(CANDIDATE_ROLE)
                         .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
