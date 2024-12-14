@@ -22,7 +22,7 @@
 
         .table {
             width: 100%;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 20px auto;
             border-collapse: collapse;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -60,6 +60,20 @@
         .table a:hover {
             text-decoration: underline;
         }
+
+        form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -72,19 +86,27 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>dob</th>
-                <th>phone</th>
-                <th>email</th>
+                <th>Dob</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Connection</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="candidate : ${candidates}">
-                <td th:text="${candidate.id}"></td>
+            <tr th:each="candidate, iterStat : ${candidates}">
+                <td th:text="${iterStat.index + 1}"></td>
                 <td th:text="${candidate.fullName}"></td>
                 <td th:text="${candidate.dob}"></td>
                 <td th:text="${candidate.phone}"></td>
                 <td th:text="${candidate.email}"></td>
+                <td>
+                    <form action="/company/send-email" method="post">
+                        <input type="hidden" name="email" th:value="${candidate.email}" />
+                        <button type="submit">Send Email</button>
+                    </form>
+                </td>
             </tr>
+
             </tbody>
         </table>
     </div>

@@ -8,10 +8,13 @@ import fit.iuh.edu.vn.backend.services.CandidateServices;
 import fit.iuh.edu.vn.backend.services.JobServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
@@ -31,6 +34,8 @@ public class CandidateController {
     @Autowired
     private SkillRepository skillRepository;
 
+    @Autowired
+    private JavaMailSender mailSender;
 
     @GetMapping("/candidate/dashboard")
     public String dashboard(Model model) {
@@ -82,6 +87,25 @@ public class CandidateController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
         return "candidates/candidates-paging";
+    }
+
+    @PostMapping("/company/send-email")
+    public String sendEmail(@RequestParam("email") String email, Model model) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(email);
+            message.setSubject("Job Opportunity");
+            message.setText("Dear Candidate, we have a job opportunity for you. Please contact us for more details.");
+
+            // Gửi email
+            mailSender.send(message);
+
+            model.addAttribute("message", "Email sent successfully to " + email);
+        } catch (Exception e) {
+            model.addAttribute("message", "Error sending email: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return "redirect:/company/dashboard";
     }
 
 }
