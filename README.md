@@ -57,3 +57,16 @@ tìm kiếm công việc phù hợp cho mình.
     spring.mail.properties.mail.smtp.connectiontimeout=5000
     spring.mail.properties.mail.smtp.timeout=5000
     spring.mail.properties.mail.smtp.writetimeout=5000
+## Demo
+#### 1. Login Page
+![Ảnh chụp login page](https://drive.google.com/uc?id=17jxJ9LJJsSkOXJSKniysRywaQfWPZHhZ)
+#### 2. Candidate Dasboard
+![Ảnh chụp candidate dashboard](https://drive.google.com/uc?id=1Y_SudtR1wi99k4xUbGjrP8B8XGiClkzC)
+#### 3. Company Dashboard
+![Ảnh chụp company dashboard](https://drive.google.com/uc?id=1Ji2vQfQ4ZuXtPVrwRl0yeTICDycgDSJo)
+#### 4. Post Job Page
+![Ảnh chụp post job page](https://drive.google.com/uc?id=1aQDsmJgQeXkVV7Wy4ivCxIt9WU9Iwoy5)
+#### 5. View Potential Candidates
+![Ảnh chụp view candidates](https://drive.google.com/uc?id=1FuCBE4aNxPXzjeYD_sHJAjI5yyitO20P)
+#### 6. Send Email
+![Ảnh chụp send email](https://drive.google.com/uc?id=17AQPSEszF7m7RBotvuxiw2rJ3E7aEaZf)
